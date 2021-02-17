@@ -104,7 +104,7 @@ namespace CreatingObservers
             Observable.Range(1, 5)
                .Select(x => x / (x - 3))
                .Subscribe(x => Console.WriteLine("{0}", x),
-                   ex => {/* do something with the exception */});
+                   ex => { Console.WriteLine("did something with the exception"); });
         }
 
         private static void CreatingWithFullSubscribeOverload()
@@ -113,7 +113,7 @@ namespace CreatingObservers
             Observable.Range(1, 5)
                 .Subscribe(
                     x => Console.WriteLine("OnNext({0})", x),
-                    ex => Console.WriteLine("OnError: {0}", ex.Message),
+                    OnErrorEx => Console.WriteLine("OnError Exception: {0}", OnErrorEx.Message),
                     () => Console.WriteLine("OnCompleted")
                 );
 
